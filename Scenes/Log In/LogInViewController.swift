@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class LogInViewController: UIViewController {
 
     
@@ -31,6 +33,44 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func didTapLogIn(_ sender: UIButton) {
-    }
-
+            guard let userName = userNameField.text, !userName.isEmpty,
+                  let password = passwordField.text, !password.isEmpty else {
+                showAlert(title: "შეცდომა", message: "გთხოვთ შეავსოთ ყველა ველი")
+                return
+            }
+            
+            if authenticateUser(userName: userName, password: password) {
+                navigateToGenres()
+            } else {
+                showAlert(title: "შეცდომა", message: "იუზერნეიმი ან პაროლი არასწორია")
+            }
+        }
+        
+        private func authenticateUser(userName: String, password: String) -> Bool {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+            fetchRequest.predicate = NSPredicate(format: "userName == %@ AND password == %@", userName, password)
+            
+            do {
+                let users = try context.fetch(fetchRequest)
+                return !users.isEmpty
+            } catch {
+                print("მონაცემების წამოღება ვერ მოხერხდა: \(error.localizedDescription)")
+                return false
+            }
+        }
+        
+        private func navigateToGenres() {
+            let storyboard = UIStoryboard(name: "Genres", bundle: nil)
+            if let genresVC = storyboard.instantiateViewController(withIdentifier: "GenresViewController") as? GenresViewController {
+                navigationController?.pushViewController(genresVC, animated: true)
+            }
+        }
+        
+        private func showAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
 }
