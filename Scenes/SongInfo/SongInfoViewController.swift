@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SongInfoViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class SongInfoViewController: UIViewController {
     
     @IBOutlet weak var addToFavsButton: UIButton!
     
+    var song: Song?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +34,52 @@ class SongInfoViewController: UIViewController {
         
         addToFavsButton.layer.cornerRadius = 38
         
+        populateData()
     }
+    
+    private func populateData() {
+            guard let song = song else { return }
+            
+            songTitle.text = song.title
+            songAuthor.text = "Artist: \(song.album.coverMedium)"
+            
+            if let imageUrl = URL(string: song.album.coverMedium) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.songImage.image = image
+                        }
+                    }
+                }
+            }
+        }
     
     @IBAction func didTapAddToFavs(_ sender: Any) {
+        
+        guard let song = song else { return }
+                
+                saveToFavorites(song: song)
     }
     
-}
+    private func saveToFavorites(song: Song) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let favorite = NSEntityDescription.insertNewObject(forEntityName: "FavoriteSong", into: context)
+            favorite.setValue(song.title, forKey: "title")
+            favorite.setValue(song.album.coverMedium, forKey: "albumCover")
+            
+            do {
+                try context.save()
+                showAlert(title: "Success", message: "Song added to favorites!")
+            } catch {
+                showAlert(title: "Error", message: "Failed to add song to favorites.")
+            }
+        }
+        
+        private func showAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true)
+        }
+    }
