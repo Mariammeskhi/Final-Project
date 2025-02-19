@@ -19,5 +19,17 @@ class SongsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
     }
-
-}
+    func configure(with song: Song) {
+            songName.text = song.title
+            if let imageUrl = URL(string: song.album.coverMedium) {
+                
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.songImage.image = image
+                        }
+                    }
+                }
+            }
+        }
+    }
