@@ -84,8 +84,10 @@
                     <connections>
                         <outlet property="authorLabel" destination="nwr-FS-77l" id="4iA-SN-w7K"/>
                         <outlet property="removeFromFavorites" destination="pdF-ib-gcK" id="Rnr-EB-ub7"/>
+                        <outlet property="songAuthor" destination="nwr-FS-77l" id="9AH-MM-bjz"/>
                         <outlet property="songImage" destination="H5Z-6E-jU1" id="Goq-yh-g5B"/>
                         <outlet property="songLabel" destination="bC7-Rb-YWM" id="GRQ-0y-Moi"/>
+                        <outlet property="songTitle" destination="bC7-Rb-YWM" id="3BW-eT-yz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
