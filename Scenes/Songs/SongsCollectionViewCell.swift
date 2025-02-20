@@ -16,13 +16,12 @@ class SongsCollectionViewCell: UICollectionViewCell {
     
     
     override func awakeFromNib() {
-        super.awakeFromNib()
+            super.awakeFromNib()
+        }
         
-    }
-    func configure(with song: Song) {
-            songName.text = song.title
-            if let imageUrl = URL(string: song.album.coverMedium) {
-                
+        func configure(with song: Song) {
+            songName.text = song.name
+            if let albumCover = song.albumCover, let imageUrl = URL(string: albumCover) {
                 DispatchQueue.global().async {
                     if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
                         DispatchQueue.main.async {
@@ -30,6 +29,8 @@ class SongsCollectionViewCell: UICollectionViewCell {
                         }
                     }
                 }
+            } else {
+                songImage.image = UIImage(named: "placeholder") 
             }
         }
     }

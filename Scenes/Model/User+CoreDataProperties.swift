@@ -14,12 +14,30 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var userName: String?
     @NSManaged public var email: String?
+    @NSManaged public var id: UUID?
     @NSManaged public var password: String?
+    @NSManaged public var name: String?
+    @NSManaged public var username: String?
+    @NSManaged public var favorites: NSSet?
+    
 }
 
-extension User : Identifiable {
+// MARK: - Generated accessors for favorites
+extension User {
+    
+    @objc(addFavoritesObject:)
+    @NSManaged public func addToFavorites(_ value: Song)
 
+    @objc(removeFavoritesObject:)
+    @NSManaged public func removeFromFavorites(_ value: Song)
+
+    @objc(addFavorites:)
+    @NSManaged public func addToFavorites(_ values: NSSet)
+
+    @objc(removeFavorites:)
+    @NSManaged public func removeFromFavorites(_ values: NSSet)
 }
+
+extension User : Identifiable { }
+

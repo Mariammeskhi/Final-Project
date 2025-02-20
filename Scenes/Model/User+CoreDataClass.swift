@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  User+CoreDataClass.swift
 //  Final Project
 //
 //  Created by mariam meskhi on 16.02.25.
@@ -10,5 +10,4 @@ import CoreData
 
 @objc(User)
 public class User: NSManagedObject {
-
 }

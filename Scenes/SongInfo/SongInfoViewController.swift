@@ -38,21 +38,21 @@ class SongInfoViewController: UIViewController {
     }
     
     private func populateData() {
-            guard let song = song else { return }
-            
-            songTitle.text = song.title
-            songAuthor.text = "Artist: \(song.album.coverMedium)"
-            
-            if let imageUrl = URL(string: song.album.coverMedium) {
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.songImage.image = image
-                        }
+        guard let song = song else { return }
+        
+        songTitle.text = song.name // Use 'name' instead of 'title'
+        songAuthor.text = "Artist: \(song.artist ?? "Unknown")" // Use 'artist'
+        
+        if let imageUrlString = song.albumCover, let imageUrl = URL(string: imageUrlString) {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.songImage.image = image
                     }
                 }
             }
         }
+    }
     
     @IBAction func didTapAddToFavs(_ sender: Any) {
         
@@ -66,8 +66,8 @@ class SongInfoViewController: UIViewController {
             let context = appDelegate.persistentContainer.viewContext
             
             let favorite = NSEntityDescription.insertNewObject(forEntityName: "FavoriteSong", into: context)
-            favorite.setValue(song.title, forKey: "title")
-            favorite.setValue(song.album.coverMedium, forKey: "albumCover")
+            favorite.setValue(song.name, forKey: "title")
+            favorite.setValue(song.albumCover, forKey: "albumCover")
             
             do {
                 try context.save()

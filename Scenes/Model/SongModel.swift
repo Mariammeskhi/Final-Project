@@ -4,16 +4,15 @@
 //
 //  Created by mariam meskhi on 19.02.25.
 //
-
 struct SongsResponse: Codable {
-    let data: [Song]
+    let data: [SongDTO]
 }
 
-struct Song: Codable {
+struct SongDTO: Codable {
     let title: String
     let album: Album
 }
 
 struct Album: Codable {
-    let coverMedium: String 
+    let coverMedium: String?
 }
