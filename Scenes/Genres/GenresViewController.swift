@@ -22,6 +22,11 @@ class GenresViewController: UIViewController {
         tableView.delegate = self
                 tableView.dataSource = self
                 searchBar.delegate = self
+        
+        
+        
+        let nib = UINib(nibName: "GenresTableViewCell", bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: "GenresTableViewCell")
                 
                 fetchGenres()
 

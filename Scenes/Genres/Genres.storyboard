@@ -4,11 +4,10 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Genres View Controller-->
+        <!--Genres-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="GenresViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="GenresViewController" customModule="Final_Project" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,8 +17,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iam-lV-By4">
                                 <rect key="frame" x="0.0" y="153" width="393" height="665"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="y1O-vK-W45">
                                 <rect key="frame" x="0.0" y="103" width="393" height="44"/>
@@ -47,7 +49,7 @@
                             <constraint firstItem="y1O-vK-W45" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="z3Y-n0-Fc3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="MMv-i3-afQ"/>
+                    <navigationItem key="navigationItem" title="Genres" id="MMv-i3-afQ"/>
                     <connections>
                         <outlet property="searchBar" destination="y1O-vK-W45" id="3op-bV-a99"/>
                         <outlet property="tableView" destination="iam-lV-By4" id="KB5-vM-0Zf"/>
@@ -65,6 +67,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zEd-KJ-9ND">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -76,9 +81,4 @@
             <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
