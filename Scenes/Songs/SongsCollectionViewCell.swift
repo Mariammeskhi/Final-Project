@@ -11,16 +11,15 @@ class SongsCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var songImage: UIImageView!
     
-    
-    @IBOutlet weak var songName: UILabel!
-    
-    
     override func awakeFromNib() {
             super.awakeFromNib()
+            songImage.contentMode = .scaleAspectFill
+            songImage.clipsToBounds = true
+            layer.cornerRadius = 8
+            layer.masksToBounds = true
         }
         
         func configure(with song: Song) {
-            songName.text = song.name
             if let albumCover = song.albumCover, let imageUrl = URL(string: albumCover) {
                 DispatchQueue.global().async {
                     if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
@@ -30,7 +29,7 @@ class SongsCollectionViewCell: UICollectionViewCell {
                     }
                 }
             } else {
-                songImage.image = UIImage(named: "placeholder") 
+                songImage.image = UIImage(named: "placeholder")
             }
         }
     }
