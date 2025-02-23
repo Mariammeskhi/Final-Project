@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 
@@ -42,7 +43,7 @@ class LogInViewController: UIViewController {
             if authenticateUser(userName: userName, password: password) {
                 navigateToGenres()
             } else {
-                showAlert(title: "შეცდომა", message: "იუზერნეიმი ან პაროლი არასწორია")
+                showAlert(title: "შეცდომა", message: "მომხმარებლის სახელი ან პაროლი არასწორია")
             }
         }
         
