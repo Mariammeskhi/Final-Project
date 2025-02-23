@@ -4,7 +4,6 @@
 //
 //  Created by mariam meskhi on 19.02.25.
 //
-
 import Foundation
 import CoreData
 
@@ -21,10 +20,10 @@ public class Song: NSManagedObject {
 extension Song {
     convenience init(from dto: SongDTO, context: NSManagedObjectContext) {
         self.init(context: context)
-        self.name = dto.title
-        self.artist = "Unknown Artist"
         self.id = UUID()
+        self.name = dto.name
+        self.artist = "Unknown Artist"
         self.duration = 0.0
-        self.albumCover = dto.album.coverMedium
+        self.albumCover = dto.picture
     }
 }

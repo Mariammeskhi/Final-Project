@@ -66,9 +66,10 @@ class GenresViewController: UIViewController {
        }
        
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "GenresTableViewCell", for: indexPath)
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: "GenresTableViewCell", for: indexPath) as? GenresTableViewCell
+           else {return UITableViewCell()}
            let genre = filteredGenres[indexPath.row]
-           cell.textLabel?.text = genre.name
+           cell.configure(with: genre)
            return cell
        }
        

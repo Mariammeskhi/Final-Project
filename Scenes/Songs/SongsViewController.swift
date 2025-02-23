@@ -14,14 +14,18 @@ class SongsViewController: UIViewController {
     
     
     var genreId: Int?
-        private var songs: [Song] = []
-        
+    private var songs: [SongDTO] = []{
+        didSet{
+            self.collectionView.reloadData()
+        }
+    }
+
         override func viewDidLoad() {
             super.viewDidLoad()
             setupCollectionView()
             fetchSongs()
         }
-        
+
         private func setupCollectionView() {
             collectionView.delegate = self
             collectionView.dataSource = self
@@ -29,46 +33,41 @@ class SongsViewController: UIViewController {
             let nib = UINib(nibName: "SongsCollectionViewCell", bundle: nil)
             collectionView.register(nib, forCellWithReuseIdentifier: "SongsCollectionViewCell")
         }
-        
+    
+
         private func fetchSongs() {
             guard let genreId = genreId else { return }
-            let urlString = "https://api.deezer.com/genre/\(genreId)/artists"
-            
+            let urlString = "https://api.deezer.com/genre"
+
             guard let url = URL(string: urlString) else { return }
-            
+
             URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
                 guard let self = self else { return }
-                
+
                 if let error = error {
                     print("Error fetching songs: \(error)")
                     return
                 }
-                
+
                 guard let data = data else { return }
-                
+
                 do {
                     let response = try JSONDecoder().decode(SongsResponse.self, from: data)
-                    
+
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else { return }
-                        
+
                         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                         let context = appDelegate.persistentContainer.viewContext
-                        
-                        self.songs = response.data.map { songDTO in
-                            let song = Song(context: context)
-                            song.name = songDTO.title
-                            song.albumCover = songDTO.album.coverMedium ?? ""
-                            return song
-                        }
-                        
+
+                        self.songs = response.data//.map { Song(from: $0, context: context) }
+
                         do {
                             try context.save()
                         } catch {
                             print("Error saving songs: \(error)")
                         }
-                        
-                        self.collectionView.reloadData()
+
                     }
                 } catch {
                     print("Error decoding songs: \(error)")
@@ -77,11 +76,13 @@ class SongsViewController: UIViewController {
         }
     }
 
+    // MARK: - UICollectionViewDelegate & DataSource
+
     extension SongsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return songs.count
         }
-        
+
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongsCollectionViewCell", for: indexPath) as? SongsCollectionViewCell else {
                 return UICollectionViewCell()
@@ -90,12 +91,14 @@ class SongsViewController: UIViewController {
             cell.configure(with: song)
             return cell
         }
-        
+
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let selectedSong = songs[indexPath.row]
             print("Selected song: \(selectedSong.name ?? "Unknown")")
         }
     }
+
+    // MARK: - UICollectionViewDelegateFlowLayout
 
     extension SongsViewController: UICollectionViewDelegateFlowLayout {
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
