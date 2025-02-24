@@ -33,20 +33,22 @@
                                     <constraint firstAttribute="width" constant="291" id="ysH-Ms-3cY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yw9-cm-frZ">
-                                <rect key="frame" x="123" y="560" width="146" height="54"/>
-                                <color key="backgroundColor" red="0.4274684259" green="0.37637329749999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idE-Ef-EgK">
+                                <rect key="frame" x="121" y="563" width="151" height="56"/>
+                                <color key="backgroundColor" red="0.42745098040000001" green="0.37637329749999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="146" id="8F6-0R-gvc"/>
-                                    <constraint firstAttribute="height" constant="54" id="wgV-8n-f5A"/>
+                                    <constraint firstAttribute="height" constant="56" id="4sY-O4-YKC"/>
+                                    <constraint firstAttribute="width" constant="151" id="un2-5D-H8n"/>
                                 </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Log In"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log In">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="21"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="didTapLogIn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="e2S-hq-lfy"/>
+                                    <action selector="didTapLogIn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zC2-m8-8X7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -54,24 +56,21 @@
                         <color key="backgroundColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Lj3-xp-qXN" firstAttribute="top" secondItem="Td8-WP-zpK" secondAttribute="bottom" constant="35" id="2wq-4P-x52"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Yw9-cm-frZ" secondAttribute="trailing" constant="124" id="5c5-F2-yTB"/>
-                            <constraint firstItem="Yw9-cm-frZ" firstAttribute="top" secondItem="Lj3-xp-qXN" secondAttribute="bottom" constant="65" id="95s-FH-dBm"/>
+                            <constraint firstItem="idE-Ef-EgK" firstAttribute="top" secondItem="Lj3-xp-qXN" secondAttribute="bottom" constant="68" id="AXl-nz-n6a"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Lj3-xp-qXN" secondAttribute="trailing" constant="51" id="Jkl-HO-p9K"/>
-                            <constraint firstItem="Yw9-cm-frZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="123" id="NKR-kO-6tg"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Yw9-cm-frZ" secondAttribute="bottom" constant="204" id="TXq-7D-0dD"/>
-                            <constraint firstItem="Yw9-cm-frZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="123" id="TsJ-yq-X1R"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="idE-Ef-EgK" secondAttribute="trailing" constant="121" id="TgT-Rl-2tn"/>
                             <constraint firstItem="Lj3-xp-qXN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="51" id="e6M-vt-oJz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="idE-Ef-EgK" secondAttribute="bottom" constant="199" id="h5Q-n6-2pb"/>
                             <constraint firstItem="Lj3-xp-qXN" firstAttribute="top" secondItem="Td8-WP-zpK" secondAttribute="bottom" constant="35" id="iUW-WM-QBI"/>
                             <constraint firstItem="Td8-WP-zpK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="203" id="kwM-ht-CwL"/>
-                            <constraint firstItem="Yw9-cm-frZ" firstAttribute="top" secondItem="Lj3-xp-qXN" secondAttribute="bottom" constant="65" id="ooU-m6-Do5"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Td8-WP-zpK" secondAttribute="trailing" constant="51" id="qWe-CR-8Te"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Yw9-cm-frZ" secondAttribute="bottom" constant="204" id="s8h-W5-nho"/>
                             <constraint firstItem="Td8-WP-zpK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="51" id="sqC-BI-Qqs"/>
+                            <constraint firstItem="idE-Ef-EgK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="121" id="wQw-9c-U4U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="LVz-2A-jqX"/>
                     <connections>
-                        <outlet property="logInButton" destination="Yw9-cm-frZ" id="sbu-mP-Fkg"/>
+                        <outlet property="logInButton" destination="idE-Ef-EgK" id="Jmt-mZ-I5l"/>
                         <outlet property="passwordField" destination="Lj3-xp-qXN" id="59t-JR-fjz"/>
                         <outlet property="userNameField" destination="Td8-WP-zpK" id="kZ4-E2-8Mw"/>
                     </connections>

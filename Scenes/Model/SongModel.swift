@@ -12,11 +12,16 @@ struct SongsResponse: Codable {
 
 struct SongDTO: Codable {
     let name: String
-    let picture: String
+    let album: Album
+
+    enum CodingKeys: String, CodingKey {
+        case name = "title"
+        case album
+    }
 }
 
 struct Album: Codable {
-    let coverMedium: String?
+    let cover: String
 }
 /*"id": 0,
  "name": "All",

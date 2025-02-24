@@ -11,10 +11,11 @@ import CoreData
 public class Song: NSManagedObject {
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var artist: String?
     @NSManaged public var duration: Double
     @NSManaged public var albumCover: String?
     @NSManaged public var users: NSSet?
+    @NSManaged public var isFavorite: Bool
+    
 }
 
 extension Song {
@@ -22,8 +23,7 @@ extension Song {
         self.init(context: context)
         self.id = UUID()
         self.name = dto.name
-        self.artist = "Unknown Artist"
         self.duration = 0.0
-        self.albumCover = dto.picture
+        self.albumCover = dto.album.cover
     }
 }
