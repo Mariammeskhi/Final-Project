@@ -35,46 +35,46 @@ class SongsViewController: UIViewController {
         }
     
 
-        private func fetchSongs() {
-            guard let genreId = genreId else { return }
-            let urlString = "https://api.deezer.com/genre"
+    private func fetchSongs() {
+        guard let genreId = genreId else { return }
+        let urlString = "https://api.deezer.com/chart/\(genreId)/tracks" // Fetch songs by genre
 
-            guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else { return }
 
-            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                guard let self = self else { return }
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
 
-                if let error = error {
-                    print("Error fetching songs: \(error)")
-                    return
-                }
+            if let error = error {
+                print("Error fetching songs: \(error)")
+                return
+            }
 
-                guard let data = data else { return }
+            guard let data = data else { return }
 
-                do {
-                    let response = try JSONDecoder().decode(SongsResponse.self, from: data)
+            do {
+                let response = try JSONDecoder().decode(SongsResponse.self, from: data)
 
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
 
-                        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                        let context = appDelegate.persistentContainer.viewContext
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    let context = appDelegate.persistentContainer.viewContext
 
-                        self.songs = response.data//.map { Song(from: $0, context: context) }
+                    self.songs = response.data
 
-                        do {
-                            try context.save()
-                        } catch {
-                            print("Error saving songs: \(error)")
-                        }
-
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Error saving songs: \(error)")
                     }
-                } catch {
-                    print("Error decoding songs: \(error)")
                 }
-            }.resume()
+            } catch {
+                print("Error decoding songs: \(error)")
+            }
+        }.resume()
         }
-    }
+        }
+    
 
     // MARK: - UICollectionViewDelegate & DataSource
 
@@ -93,9 +93,18 @@ class SongsViewController: UIViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let selectedSong = songs[indexPath.row]
-            print("Selected song: \(selectedSong.name ?? "Unknown")")
-        }
+                let selectedSong = songs[indexPath.row]
+                
+               
+                let storyboard = UIStoryboard(name: "SongInfo", bundle: nil)
+                if let songInfoVC = storyboard.instantiateViewController(withIdentifier: "SongInfoViewController") as? SongInfoViewController {
+                    
+                    songInfoVC.song = selectedSong
+                    
+                   
+                    navigationController?.pushViewController(songInfoVC, animated: true)
+                }
+            }
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -107,3 +116,5 @@ class SongsViewController: UIViewController {
             return CGSize(width: width, height: width)
         }
     }
+
+

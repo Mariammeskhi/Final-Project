@@ -13,28 +13,32 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var favoritesCollectionView: UICollectionView!
     
-    var favoriteSongs: [NSManagedObject] = []
-    
-    var managedObjectContext: NSManagedObjectContext?
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        configureCollectionView()
-                fetchFavorites()
-    }
-    
-    private func configureCollectionView() {
+    var favoriteSongs: [Song] = []
+       var managedObjectContext: NSManagedObjectContext?
+       
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           configureCollectionView()
+           fetchFavorites()
+           
+           NotificationCenter.default.addObserver(self, selector: #selector(handleFavoriteSongRemoved(_:)), name: NSNotification.Name("FavoriteSongRemoved"), object: nil)
+          
+       }
+       
+       private func configureCollectionView() {
            favoritesCollectionView.delegate = self
            favoritesCollectionView.dataSource = self
+           
+           let nib = UINib(nibName: "FavoritesCollectionViewCell", bundle: nil)
+           favoritesCollectionView.register(nib, forCellWithReuseIdentifier: "FavoritesCollectionViewCell")
        }
-
+       
        private func fetchFavorites() {
            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
            let context = appDelegate.persistentContainer.viewContext
            
-           let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteSong")
+           let fetchRequest = NSFetchRequest<Song>(entityName: "Song")
+           fetchRequest.predicate = NSPredicate(format: "isFavorite == true")
            
            do {
                favoriteSongs = try context.fetch(fetchRequest)
@@ -43,9 +47,21 @@ class FavoritesViewController: UIViewController {
                print("Failed to fetch favorites: \(error)")
            }
        }
+    
+    @objc private func handleFavoriteSongRemoved(_ notification: Notification) {
+        guard let songName = notification.object as? String else { return }
+
+        if let index = favoriteSongs.firstIndex(where: { ($0.value(forKey: "name") as? String) == songName }) {
+            favoriteSongs.remove(at: index)
+
+            
+            favoritesCollectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+        }
+    }
    }
 
-   // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
+
    extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
            return favoriteSongs.count
@@ -55,31 +71,14 @@ class FavoritesViewController: UIViewController {
            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as? FavoritesCollectionViewCell else {
                return UICollectionViewCell()
            }
-           
-           let favorite = favoriteSongs[indexPath.row]
-           if let albumCover = favorite.value(forKey: "albumCover") as? String,
-              let imageUrl = URL(string: albumCover) {
-               DispatchQueue.global().async {
-                   if let data = try? Data(contentsOf: imageUrl), let image = UIImage(data: data) {
-                       DispatchQueue.main.async {
-                           cell.songImage.image = image
-                       }
-                   }
-               }
-           }
-           
+           cell.configure(with: favoriteSongs[indexPath.row])
            return cell
        }
        
        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
            let storyboard = UIStoryboard(name: "FavSong", bundle: nil)
            if let favSongVC = storyboard.instantiateViewController(withIdentifier: "FavSongViewController") as? FavSongViewController {
-               let favorite = favoriteSongs[indexPath.row]
-               
-               favSongVC.songTitleText = favorite.value(forKey: "title") as? String
-               favSongVC.songAuthorText = favorite.value(forKey: "author") as? String
-               favSongVC.songImageURL = favorite.value(forKey: "albumCover") as? String
-               
+               favSongVC.song = favoriteSongs[indexPath.row]
                favSongVC.managedObjectContext = self.managedObjectContext
                navigationController?.pushViewController(favSongVC, animated: true)
            }

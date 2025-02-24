@@ -14,69 +14,65 @@ class FavSongViewController: UIViewController {
     
     @IBOutlet weak var songImage: UIImageView!
     
-    
     @IBOutlet weak var songTitle: UILabel!
-    
-    @IBOutlet weak var songAuthor: UILabel!
-    
     
     @IBOutlet weak var removeFromFavorites: UIButton!
     
-        var songTitleText: String?
-        var songAuthorText: String?
-        var songImageURL: String?
-        var managedObjectContext: NSManagedObjectContext?
+    var managedObjectContext: NSManagedObjectContext?
+    var song: Song?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        let labels = [songTitle,songAuthor]
-           for label in labels {
-               label?.layer.cornerRadius = 15
-               label?.layer.borderWidth = 1
-               label?.layer.borderColor = UIColor.lightGray.cgColor
-               label?.clipsToBounds = true
-           }
-        
-        removeFromFavorites.layer.cornerRadius = 38
-        
         populateData()
     }
     
     private func populateData() {
-           songTitle.text = songTitleText
-           songAuthor.text = songAuthorText
-
-           if let imageURL = songImageURL, let url = URL(string: imageURL) {
-               DispatchQueue.global().async {
-                   if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                       DispatchQueue.main.async {
-                           self.songImage.image = image
-                       }
-                   }
-               }
-           }
-       }
-
-
-    @IBAction func didTapRemoveFromFavorites(_ sender: Any) {
+        guard let song = song else { return }
+        songTitle.text = song.name
+        
+        if let imageUrl = song.albumCover, let url = URL(string: imageUrl) {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.songImage.image = image
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func didTapRemoveFromFavorites(_ sender: UIButton) {
         removeFromCoreData()
     }
     
     private func removeFromCoreData() {
-          guard let context = managedObjectContext else { return }
-          let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteSong")
-          fetchRequest.predicate = NSPredicate(format: "title == %@", songTitleText ?? "")
-
-          do {
-              let results = try context.fetch(fetchRequest)
-              if let objectToDelete = results.first {
-                  context.delete(objectToDelete)
-                  try context.save()
-                  navigationController?.popViewController(animated: true)
-              }
-          } catch {
-              print("Failed to delete the song from favorites: \(error)")
-          }
-      }
-  }
+        guard let context = managedObjectContext, let songName = song?.name else {
+            print("Context or song is nil.")
+            return
+        }
+        
+        let fetchRequest = NSFetchRequest<Song>(entityName: "Song")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", songName)
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let songToDelete = results.first {
+                print("Deleting song: \(songToDelete.name ?? "Unknown")")
+                context.delete(songToDelete)
+                
+                try context.save()
+                print("Song removed successfully.")
+                
+                
+                NotificationCenter.default.post(name: NSNotification.Name("FavoriteSongRemoved"), object: songName)
+                
+                
+                navigationController?.popViewController(animated: true)
+            } else {
+                print("Song not found in Core Data.")
+            }
+        } catch {
+            print("Failed to remove from favorites: \(error)")
+        }
+    }
+}
