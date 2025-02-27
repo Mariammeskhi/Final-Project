@@ -50,12 +50,16 @@ class FavoritesViewController: UIViewController {
     
     @objc private func handleFavoriteSongRemoved(_ notification: Notification) {
         guard let songName = notification.object as? String else { return }
-
-        if let index = favoriteSongs.firstIndex(where: { ($0.value(forKey: "name") as? String) == songName }) {
+        
+        
+        if let index = favoriteSongs.firstIndex(where: { $0.name == songName }) {
             favoriteSongs.remove(at: index)
-
+            
             
             favoritesCollectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+            
+            
+            fetchFavorites()
         }
     }
    }
@@ -78,8 +82,8 @@ class FavoritesViewController: UIViewController {
        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
            let storyboard = UIStoryboard(name: "FavSong", bundle: nil)
            if let favSongVC = storyboard.instantiateViewController(withIdentifier: "FavSongViewController") as? FavSongViewController {
-               favSongVC.song = favoriteSongs[indexPath.row]
-               favSongVC.managedObjectContext = self.managedObjectContext
+               favSongVC.song = favoriteSongs[indexPath.row]  
+               favSongVC.managedObjectContext = self.managedObjectContext 
                navigationController?.pushViewController(favSongVC, animated: true)
            }
        }

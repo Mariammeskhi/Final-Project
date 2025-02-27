@@ -24,6 +24,16 @@ class FavSongViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         populateData()
+        configureUI()
+    }
+    
+    
+    private func configureUI() {
+        songTitle.layer.cornerRadius = 15
+        songTitle.layer.borderWidth = 1
+        songTitle.layer.borderColor = UIColor.lightGray.cgColor
+        songTitle.clipsToBounds = true
+        removeFromFavorites.layer.cornerRadius = 20
     }
     
     private func populateData() {
@@ -57,15 +67,12 @@ class FavSongViewController: UIViewController {
         do {
             let results = try context.fetch(fetchRequest)
             if let songToDelete = results.first {
-                print("Deleting song: \(songToDelete.name ?? "Unknown")")
+                
                 context.delete(songToDelete)
                 
                 try context.save()
-                print("Song removed successfully.")
-                
-                
+            
                 NotificationCenter.default.post(name: NSNotification.Name("FavoriteSongRemoved"), object: songName)
-                
                 
                 navigationController?.popViewController(animated: true)
             } else {
