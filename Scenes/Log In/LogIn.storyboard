@@ -51,21 +51,58 @@
                                     <action selector="didTapLogIn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zC2-m8-8X7"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotify" translatesAutoresizingMaskIntoConstraints="NO" id="chw-C7-Scz">
+                                <rect key="frame" x="31" y="247" width="331" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="331" id="XgA-Cl-gLM"/>
+                                    <constraint firstAttribute="height" constant="90" id="cWX-r0-07Z"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="Ahn-qf-9lD">
+                                <rect key="frame" x="-35" y="717" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="Geu-E9-2Y0"/>
+                                    <constraint firstAttribute="height" constant="170" id="Ie4-yN-6Hj"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="Vcq-p5-1bp"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="ghB-VD-coS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-Bk-veP">
+                                <rect key="frame" x="271" y="-42" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="2zO-Gk-0hb"/>
+                                    <constraint firstAttribute="width" constant="168" id="LMu-YK-giA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="l65-UI-EjB"/>
+                                    <constraint firstAttribute="height" constant="170" id="ngc-W2-fuE"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Lj3-xp-qXN" firstAttribute="top" secondItem="Td8-WP-zpK" secondAttribute="bottom" constant="35" id="2wq-4P-x52"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="chw-C7-Scz" secondAttribute="trailing" constant="31" id="9yQ-nU-jF7"/>
                             <constraint firstItem="idE-Ef-EgK" firstAttribute="top" secondItem="Lj3-xp-qXN" secondAttribute="bottom" constant="68" id="AXl-nz-n6a"/>
+                            <constraint firstItem="Td8-WP-zpK" firstAttribute="top" secondItem="chw-C7-Scz" secondAttribute="bottom" constant="21" id="EgT-6Y-S9b"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ahn-qf-9lD" secondAttribute="trailing" constant="260" id="J6I-K3-GS7"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Lj3-xp-qXN" secondAttribute="trailing" constant="51" id="Jkl-HO-p9K"/>
+                            <constraint firstItem="Iec-Bk-veP" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="271" id="OeJ-wH-rmH"/>
+                            <constraint firstItem="chw-C7-Scz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="31" id="Pxt-ZR-kkP"/>
+                            <constraint firstItem="Ahn-qf-9lD" firstAttribute="top" secondItem="idE-Ef-EgK" secondAttribute="bottom" constant="98" id="Qv5-k7-n60"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="idE-Ef-EgK" secondAttribute="trailing" constant="121" id="TgT-Rl-2tn"/>
                             <constraint firstItem="Lj3-xp-qXN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="51" id="e6M-vt-oJz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="idE-Ef-EgK" secondAttribute="bottom" constant="199" id="h5Q-n6-2pb"/>
+                            <constraint firstItem="Ahn-qf-9lD" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-35" id="hOP-4m-M0m"/>
+                            <constraint firstAttribute="trailing" secondItem="Iec-Bk-veP" secondAttribute="trailing" constant="-46" id="iO7-2o-HSO"/>
                             <constraint firstItem="Lj3-xp-qXN" firstAttribute="top" secondItem="Td8-WP-zpK" secondAttribute="bottom" constant="35" id="iUW-WM-QBI"/>
+                            <constraint firstItem="chw-C7-Scz" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="92" id="jeh-b0-lMW"/>
                             <constraint firstItem="Td8-WP-zpK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="203" id="kwM-ht-CwL"/>
+                            <constraint firstItem="chw-C7-Scz" firstAttribute="top" secondItem="Iec-Bk-veP" secondAttribute="bottom" constant="119" id="llf-jV-vwS"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Td8-WP-zpK" secondAttribute="trailing" constant="51" id="qWe-CR-8Te"/>
+                            <constraint firstItem="Iec-Bk-veP" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="-42" id="raV-i9-LaE"/>
                             <constraint firstItem="Td8-WP-zpK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="51" id="sqC-BI-Qqs"/>
                             <constraint firstItem="idE-Ef-EgK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="121" id="wQw-9c-U4U"/>
+                            <constraint firstAttribute="bottom" secondItem="Ahn-qf-9lD" secondAttribute="bottom" constant="-35" id="whv-wM-DVB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="LVz-2A-jqX"/>
@@ -101,4 +138,8 @@
             <point key="canvasLocation" x="9.9236641221374047" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="disc" width="1199" height="1200"/>
+        <image name="spotify" width="736" height="736"/>
+    </resources>
 </document>

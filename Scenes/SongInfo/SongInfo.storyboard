@@ -49,21 +49,47 @@
                                     <action selector="didTapAddToFavs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="g5Z-Kv-DZa"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="83L-c6-QnW">
+                                <rect key="frame" x="259" y="-47" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="7ik-Xf-9pq"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="Ey8-hS-GiK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="mMv-GO-68U"/>
+                                    <constraint firstAttribute="height" constant="170" id="pZE-wU-dLr"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="SdG-mv-ZoM">
+                                <rect key="frame" x="-37" y="715" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="H4b-61-PHY"/>
+                                    <constraint firstAttribute="width" constant="168" id="svN-Xc-lOO"/>
+                                    <constraint firstAttribute="height" constant="170" id="ukX-dq-6oh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="yjc-NA-PZJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="7QC-NS-bVj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="103" id="26J-LS-74A"/>
+                            <constraint firstItem="83L-c6-QnW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="259" id="6f0-jy-xvZ"/>
                             <constraint firstItem="fx2-Ob-Nbc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="57" id="D8E-Uz-qB7"/>
+                            <constraint firstItem="wOd-xf-fQ2" firstAttribute="top" secondItem="83L-c6-QnW" secondAttribute="bottom" constant="88" id="EWl-n3-okv"/>
+                            <constraint firstAttribute="bottom" secondItem="SdG-mv-ZoM" secondAttribute="bottom" constant="-33" id="EWx-IU-7no"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7QC-NS-bVj" secondAttribute="bottom" constant="189" id="JSs-QN-Hkt"/>
                             <constraint firstItem="wOd-xf-fQ2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="108" id="RNy-Z6-hzY"/>
+                            <constraint firstItem="SdG-mv-ZoM" firstAttribute="top" secondItem="7QC-NS-bVj" secondAttribute="bottom" constant="86" id="Uc1-8n-T0e"/>
                             <constraint firstItem="fx2-Ob-Nbc" firstAttribute="top" secondItem="wOd-xf-fQ2" secondAttribute="bottom" constant="52" id="Y9a-w4-reI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SdG-mv-ZoM" secondAttribute="trailing" constant="262" id="ZCs-cS-CcB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fx2-Ob-Nbc" secondAttribute="trailing" constant="57" id="f7v-gs-eSl"/>
+                            <constraint firstAttribute="trailing" secondItem="83L-c6-QnW" secondAttribute="trailing" constant="-34" id="kZh-lh-UsY"/>
                             <constraint firstItem="fx2-Ob-Nbc" firstAttribute="top" secondItem="wOd-xf-fQ2" secondAttribute="bottom" constant="52" id="pJI-PH-TaN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wOd-xf-fQ2" secondAttribute="trailing" constant="77" id="qC1-4U-81V"/>
                             <constraint firstItem="7QC-NS-bVj" firstAttribute="top" secondItem="fx2-Ob-Nbc" secondAttribute="bottom" constant="52" id="rQz-1c-TI8"/>
+                            <constraint firstItem="83L-c6-QnW" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="-47" id="u9f-8D-EuP"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7QC-NS-bVj" secondAttribute="trailing" constant="104" id="yJ4-wS-ViF"/>
                             <constraint firstItem="wOd-xf-fQ2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="76" id="ych-Kx-zPk"/>
+                            <constraint firstItem="SdG-mv-ZoM" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-37" id="z3m-nI-ra8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Song Info" id="mta-e4-Ms1"/>
@@ -99,4 +125,7 @@
             <point key="canvasLocation" x="110.68702290076335" y="-28.169014084507044"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="disc" width="1199" height="1200"/>
+    </resources>
 </document>

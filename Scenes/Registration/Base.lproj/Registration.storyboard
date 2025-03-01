@@ -69,14 +69,33 @@
                                     <action selector="didTapRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MiX-0U-BWT"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="xmU-h1-HeM">
+                                <rect key="frame" x="-37" y="735" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="6wo-QU-wk3"/>
+                                    <constraint firstAttribute="height" constant="170" id="jx1-2G-sIY"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="5cc-U2-DSx">
+                                <rect key="frame" x="260" y="-23" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="Cyg-zH-eSA"/>
+                                    <constraint firstAttribute="height" constant="170" id="ILV-Fb-Udg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.54993331550324798" green="0.53354620675845632" blue="0.86078912019729614" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xmU-h1-HeM" secondAttribute="trailing" constant="262" id="47p-OW-0gj"/>
+                            <constraint firstAttribute="trailing" secondItem="5cc-U2-DSx" secondAttribute="trailing" constant="-35" id="5Lc-91-xvQ"/>
                             <constraint firstItem="2ap-Pe-erg" firstAttribute="top" secondItem="b7p-kG-Klo" secondAttribute="bottom" constant="25" id="6Wb-O8-APC"/>
+                            <constraint firstItem="EHb-mu-0F7" firstAttribute="top" secondItem="5cc-U2-DSx" secondAttribute="bottom" constant="108" id="Cdv-M7-PBf"/>
                             <constraint firstItem="2ap-Pe-erg" firstAttribute="top" secondItem="b7p-kG-Klo" secondAttribute="bottom" constant="25" id="HdY-Od-z9h"/>
+                            <constraint firstAttribute="bottom" secondItem="xmU-h1-HeM" secondAttribute="bottom" constant="-53" id="Hki-3g-Met"/>
                             <constraint firstItem="EHb-mu-0F7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="JC0-f3-bxl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XCk-vU-PhM" secondAttribute="trailing" constant="40" id="JF5-ki-Ogb"/>
+                            <constraint firstItem="5cc-U2-DSx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="260" id="M7B-ut-edi"/>
                             <constraint firstItem="EHb-mu-0F7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="Q7K-nh-7T1"/>
                             <constraint firstItem="b7p-kG-Klo" firstAttribute="top" secondItem="EHb-mu-0F7" secondAttribute="bottom" constant="25" id="RRd-8F-MnL"/>
                             <constraint firstItem="b7p-kG-Klo" firstAttribute="top" secondItem="EHb-mu-0F7" secondAttribute="bottom" constant="25" id="Ssd-zJ-0YB"/>
@@ -89,10 +108,13 @@
                             <constraint firstItem="XCk-vU-PhM" firstAttribute="top" secondItem="2ap-Pe-erg" secondAttribute="bottom" constant="25" id="grc-hT-oWh"/>
                             <constraint firstItem="b7p-kG-Klo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="kiK-qr-WNL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Etf-bQ-UfD" secondAttribute="bottom" constant="135" id="lMO-Yn-uJr"/>
+                            <constraint firstItem="xmU-h1-HeM" firstAttribute="top" secondItem="Etf-bQ-UfD" secondAttribute="bottom" constant="52" id="oSV-km-DcB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b7p-kG-Klo" secondAttribute="trailing" constant="40" id="pSg-NC-Wqw"/>
                             <constraint firstItem="Etf-bQ-UfD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="122" id="r0Q-kp-qj9"/>
                             <constraint firstItem="Etf-bQ-UfD" firstAttribute="top" secondItem="XCk-vU-PhM" secondAttribute="bottom" constant="120" id="rns-Ew-mt3"/>
+                            <constraint firstItem="xmU-h1-HeM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-37" id="s76-W2-K3i"/>
                             <constraint firstItem="Etf-bQ-UfD" firstAttribute="top" secondItem="XCk-vU-PhM" secondAttribute="bottom" constant="120" id="tgU-qH-74Q"/>
+                            <constraint firstItem="5cc-U2-DSx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-23" id="z5Y-uC-Hpx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="ior-eP-Zb2"/>
@@ -130,4 +152,7 @@
             <point key="canvasLocation" x="54.198473282442748" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="disc" width="1199" height="1200"/>
+    </resources>
 </document>
