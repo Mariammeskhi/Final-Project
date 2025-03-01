@@ -47,6 +47,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-WA-Bax">
+                                <rect key="frame" x="-40" y="714" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="5DJ-dY-HxG"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="6fg-WJ-gxg"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="RvK-qM-6Td"/>
+                                    <constraint firstAttribute="height" constant="170" id="glp-0T-bX6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc" translatesAutoresizingMaskIntoConstraints="NO" id="QZj-ZE-jfa">
+                                <rect key="frame" x="267" y="-47" width="168" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="E8E-b5-3MH"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="Qjg-9s-dH8"/>
+                                    <constraint firstAttribute="width" constant="168" id="dMR-Lk-i2n"/>
+                                    <constraint firstAttribute="height" constant="170" id="s90-zV-cFQ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.54993331550000002" green="0.53354620679999998" blue="0.86078912019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -54,16 +72,24 @@
                             <constraint firstItem="H5Z-6E-jU1" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="115" id="4UL-IZ-UXb"/>
                             <constraint firstItem="bC7-Rb-YWM" firstAttribute="top" secondItem="H5Z-6E-jU1" secondAttribute="bottom" constant="54" id="633-70-GPa"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="pdF-ib-gcK" secondAttribute="bottom" constant="189" id="DIc-gW-gmv"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gMt-WA-Bax" secondAttribute="trailing" constant="265" id="DLx-ng-kCf"/>
                             <constraint firstItem="pdF-ib-gcK" firstAttribute="top" secondItem="bC7-Rb-YWM" secondAttribute="bottom" constant="54" id="FBA-gR-gyb"/>
                             <constraint firstItem="bC7-Rb-YWM" firstAttribute="top" secondItem="H5Z-6E-jU1" secondAttribute="bottom" constant="54" id="KUe-fm-I6q"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H5Z-6E-jU1" secondAttribute="trailing" constant="77" id="Orn-LA-DnB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pdF-ib-gcK" secondAttribute="trailing" constant="76" id="QMh-JO-e6c"/>
+                            <constraint firstItem="QZj-ZE-jfa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="267" id="UrR-nL-3UN"/>
                             <constraint firstItem="pdF-ib-gcK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="76" id="VM9-xt-oDY"/>
+                            <constraint firstItem="gMt-WA-Bax" firstAttribute="top" secondItem="pdF-ib-gcK" secondAttribute="bottom" constant="85" id="XWs-cr-c9P"/>
                             <constraint firstItem="H5Z-6E-jU1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="76" id="Yw1-Z3-SWe"/>
                             <constraint firstItem="pdF-ib-gcK" firstAttribute="top" secondItem="bC7-Rb-YWM" secondAttribute="bottom" constant="54" id="b74-1R-WdZ"/>
+                            <constraint firstAttribute="bottom" secondItem="gMt-WA-Bax" secondAttribute="bottom" constant="-32" id="dA8-pq-C6Z"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H5Z-6E-jU1" secondAttribute="trailing" constant="77" id="dRf-P5-mIj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bC7-Rb-YWM" secondAttribute="trailing" constant="38" id="fth-nW-HRh"/>
+                            <constraint firstAttribute="trailing" secondItem="QZj-ZE-jfa" secondAttribute="trailing" constant="-42" id="kUB-9j-Qob"/>
+                            <constraint firstItem="gMt-WA-Bax" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-40" id="ozV-T4-VV9"/>
                             <constraint firstItem="bC7-Rb-YWM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="38" id="r4G-rT-omD"/>
+                            <constraint firstItem="QZj-ZE-jfa" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="-47" id="ybP-r1-noD"/>
+                            <constraint firstItem="H5Z-6E-jU1" firstAttribute="top" secondItem="QZj-ZE-jfa" secondAttribute="bottom" constant="95" id="yus-0S-kDo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorite Song" id="bq5-ro-dxz"/>
@@ -99,4 +125,7 @@
             <point key="canvasLocation" x="54.198473282442748" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="disc" width="1199" height="1200"/>
+    </resources>
 </document>
