@@ -56,30 +56,32 @@ class FavSongViewController: UIViewController {
     }
     
     private func removeFromCoreData() {
-        guard let context = managedObjectContext, let songName = song?.name else {
-            print("Context or song is nil.")
-            return
-        }
-        
-        let fetchRequest = NSFetchRequest<Song>(entityName: "Song")
-        fetchRequest.predicate = NSPredicate(format: "name == %@", songName)
-        
-        do {
-            let results = try context.fetch(fetchRequest)
-            if let songToDelete = results.first {
-                
-                context.delete(songToDelete)
-                
-                try context.save()
-            
-                NotificationCenter.default.post(name: NSNotification.Name("FavoriteSongRemoved"), object: songName)
-                
-                navigationController?.popViewController(animated: true)
-            } else {
-                print("Song not found in Core Data.")
+        guard let song = song, let songName = song.name else { return }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+
+            let fetchRequest = NSFetchRequest<Song>(entityName: "Song")
+            fetchRequest.predicate = NSPredicate(format: "name == %@", songName)
+
+            do {
+                let results = try context.fetch(fetchRequest)
+                if let songToDelete = results.first {
+                    context.delete(songToDelete)
+                    try context.save()
+                    
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: NSNotification.Name("FavoriteSongRemoved"), object: songName)
+                        self.navigationController?.popViewController(animated: true) 
+                    }
+                }
+            } catch {
+                print("Failed to remove favorite: \(error)")
             }
-        } catch {
-            print("Failed to remove from favorites: \(error)")
         }
+    
+    private func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: completion))
+                present(alert, animated: true)
+            }
     }
-}

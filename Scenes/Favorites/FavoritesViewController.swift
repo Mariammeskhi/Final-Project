@@ -24,6 +24,13 @@ class FavoritesViewController: UIViewController {
            NotificationCenter.default.addObserver(self, selector: #selector(handleFavoriteSongRemoved(_:)), name: NSNotification.Name("FavoriteSongRemoved"), object: nil)
           
        }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        fetchFavorites()
+    }
        
        private func configureCollectionView() {
            favoritesCollectionView.delegate = self
@@ -50,17 +57,18 @@ class FavoritesViewController: UIViewController {
     
     @objc private func handleFavoriteSongRemoved(_ notification: Notification) {
         guard let songName = notification.object as? String else { return }
-        
-        
-        if let index = favoriteSongs.firstIndex(where: { $0.name == songName }) {
-            favoriteSongs.remove(at: index)
-            
-            
-            favoritesCollectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
-            
-            
-            fetchFavorites()
-        }
+
+            if let index = favoriteSongs.firstIndex(where: { $0.name == songName }) {
+                favoriteSongs.remove(at: index)
+
+                DispatchQueue.main.async {
+                    self.favoritesCollectionView.performBatchUpdates({
+                        self.favoritesCollectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+                    }, completion: { _ in
+                        self.favoritesCollectionView.reloadData() 
+                    })
+                }
+            }
     }
    }
 
