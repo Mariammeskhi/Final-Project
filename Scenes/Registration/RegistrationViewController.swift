@@ -38,13 +38,16 @@ class RegistrationViewController: UIViewController {
                   let password = passwordField.text, !password.isEmpty else {
                 showAlert(title: "შეცდომა", message: "გთხოვთ შეავსოთ ყველა ველი")
                 return
+               
             }
             
             if isUserNameTaken(userName: userName) {
                 showAlert(title: "შეცდომა", message: "მომხმარებლის სახელი უკვე გამოყენებულია")
                 return
             }
-            
+        UserDefaults.standard.set(true, forKey: "isRegistered")
+            UserDefaults.standard.synchronize()
+        
             saveUser(name: name, userName: userName, email: email, password: password)
             navigateToLogin()
         }
